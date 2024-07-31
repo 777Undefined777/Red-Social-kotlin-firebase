@@ -31,10 +31,12 @@ class CreatePostActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
+        // Initialize imageView
+        imageView = findViewById(R.id.imageView)
+
         val etContent: EditText = findViewById(R.id.editTextContent)
         val btnPost: Button = findViewById(R.id.buttonPost)
-        val btnSelectImage: Button = findViewById(R.id.buttonSelectImage)
-        imageView = findViewById(R.id.imageView)
+        val btnSelectImage: ImageView = findViewById(R.id.imageView)
 
         btnSelectImage.setOnClickListener {
             openImagePicker()
