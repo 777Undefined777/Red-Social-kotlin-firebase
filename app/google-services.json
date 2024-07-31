@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "554240299757",
+    "project_id": "kotlinaprendiz",
+    "storage_bucket": "kotlinaprendiz.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:554240299757:android:105cc4e4aaa1e2246732e4",
+        "android_client_info": {
+          "package_name": "com.example.kotlinaprendiz"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjsVb6wlq6mal5nDCsd-lxHxjm7BnbZmg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
