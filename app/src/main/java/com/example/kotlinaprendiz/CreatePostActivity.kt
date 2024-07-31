@@ -21,7 +21,7 @@ import java.util.*
 class CreatePostActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
-    private lateinit var selectedImageUri: Uri
+    private var selectedImageUri: Uri? = null
     private lateinit var imageView: ImageView
     private val PICK_IMAGE_REQUEST = 1
 
@@ -43,10 +43,14 @@ class CreatePostActivity : AppCompatActivity() {
         btnPost.setOnClickListener {
             val content = etContent.text.toString().trim()
 
-            if (content.isNotEmpty() && this::selectedImageUri.isInitialized) {
-                uploadImageAndCreatePost(content)
+            if (content.isNotEmpty()) {
+                if (selectedImageUri != null) {
+                    uploadImageAndCreatePost(content)
+                } else {
+                    createPostWithoutImage(content)
+                }
             } else {
-                Toast.makeText(this, "Por favor, ingresa contenido y selecciona una imagen.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Por favor, ingresa contenido.", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -60,23 +64,29 @@ class CreatePostActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data != null && data.data != null) {
-            selectedImageUri = data.data!!
+            selectedImageUri = data.data
             imageView.setImageURI(selectedImageUri)
         }
     }
 
     private fun uploadImageAndCreatePost(content: String) {
         val storageRef = FirebaseStorage.getInstance().reference.child("images/${UUID.randomUUID()}.jpg")
-        storageRef.putFile(selectedImageUri).addOnSuccessListener { taskSnapshot ->
-            storageRef.downloadUrl.addOnSuccessListener { uri ->
-                createPost(content, uri.toString())
+        selectedImageUri?.let { uri ->
+            storageRef.putFile(uri).addOnSuccessListener { taskSnapshot ->
+                storageRef.downloadUrl.addOnSuccessListener { downloadUri ->
+                    createPost(content, downloadUri.toString())
+                }
+            }.addOnFailureListener { exception ->
+                Toast.makeText(this, "Error al subir la imagen: ${exception.message}", Toast.LENGTH_SHORT).show()
             }
-        }.addOnFailureListener { exception ->
-            Toast.makeText(this, "Error al subir la imagen: ${exception.message}", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun createPost(content: String, imageUrl: String) {
+    private fun createPostWithoutImage(content: String) {
+        createPost(content, null)
+    }
+
+    private fun createPost(content: String, imageUrl: String?) {
         val database = FirebaseDatabase.getInstance()
         val postsRef = database.getReference("posts")
         val usersRef = database.getReference("usuarios")
