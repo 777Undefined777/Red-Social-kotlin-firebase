@@ -1,20 +1,60 @@
 package com.example.kotlinaprendiz
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.kotlinaprendiz.models.Post
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var auth: FirebaseAuth
+    private lateinit var database: FirebaseDatabase
+    private lateinit var postsRef: DatabaseReference
+    private lateinit var postsList: MutableList<Post>
+    private lateinit var postsAdapter: PostsAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_main)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+
+        auth = FirebaseAuth.getInstance()
+        database = FirebaseDatabase.getInstance()
+        postsRef = database.getReference("posts")
+        postsList = mutableListOf()
+        postsAdapter = PostsAdapter(postsList)
+
+        val recyclerView: RecyclerView = findViewById(R.id.recyclerViewPosts)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = postsAdapter
+
+        fetchPosts()
+
+        // Botón para crear una nueva publicación
+        val fabCreatePost: FloatingActionButton = findViewById(R.id.fabCreatePost)
+        fabCreatePost.setOnClickListener {
+            startActivity(Intent(this, CreatePostActivity::class.java))
         }
+    }
+
+    private fun fetchPosts() {
+        postsRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                postsList.clear()
+                for (postSnapshot in snapshot.children) {
+                    val post = postSnapshot.getValue(Post::class.java)
+                    post?.let { postsList.add(it) }
+                }
+                postsAdapter.notifyDataSetChanged()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                // Manejar error
+            }
+        })
     }
 }

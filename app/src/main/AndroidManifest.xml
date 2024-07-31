@@ -27,6 +27,8 @@
             android:name=".MainActivity"
             android:exported="true" />
         <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".CreatePostActivity"></activity>
+        <activity android:name=".PostsAdapter"></activity>
 
     </application>
 </manifest>

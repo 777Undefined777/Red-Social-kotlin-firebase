@@ -1,4 +1,4 @@
-package com.example.kotlinaprendiz
+package com.example.kotlinaprendiz.models
 
 data class User(
     val uid: String,
