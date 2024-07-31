@@ -65,13 +65,13 @@ class RegistroActivity : AppCompatActivity() {
         val user = User(uid, username, email, dateOfBirth, password)
         userRef.setValue(user).addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                Log.d(TAG, "User data saved successfully.")
+                Log.d(TAG, "Se guardaron los datos de el usuario exitosamente.")
                 Toast.makeText(this, "Registro exitoso.", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, LoginActivity::class.java) // Redirige a LoginActivity después del registro exitoso
                 startActivity(intent)
                 finish()
             } else {
-                Log.w(TAG, "Failed to save user data.", task.exception)
+                Log.w(TAG, "error al guardar los datos en la bd.", task.exception)
                 Toast.makeText(this, "Error al guardar los datos: ${task.exception?.message}",
                     Toast.LENGTH_SHORT).show()
             }
