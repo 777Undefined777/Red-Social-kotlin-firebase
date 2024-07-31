@@ -42,6 +42,8 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation("com.github.bumptech.glide:glide:4.15.1")
+
 
     // Firebase Authentication
     implementation("com.google.firebase:firebase-auth:22.1.0")
@@ -54,6 +56,7 @@ dependencies {
 
     // Firebase BOM (para gestionar versiones de Firebase de forma coherente)
     implementation(platform("com.google.firebase:firebase-bom:32.2.0"))
+    implementation(libs.firebase.storage.ktx)
 
     // Librerías de testing
     testImplementation(libs.junit)

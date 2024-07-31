@@ -1,18 +1,29 @@
 package com.example.kotlinaprendiz
 
+import android.app.Activity
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.kotlinaprendiz.models.Post
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
+
+import java.util.*
 
 class CreatePostActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
+    private lateinit var selectedImageUri: Uri
+    private lateinit var imageView: ImageView
+    private val PICK_IMAGE_REQUEST = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,19 +33,50 @@ class CreatePostActivity : AppCompatActivity() {
 
         val etContent: EditText = findViewById(R.id.editTextContent)
         val btnPost: Button = findViewById(R.id.buttonPost)
+        val btnSelectImage: Button = findViewById(R.id.buttonSelectImage)
+        imageView = findViewById(R.id.imageView)
+
+        btnSelectImage.setOnClickListener {
+            openImagePicker()
+        }
 
         btnPost.setOnClickListener {
             val content = etContent.text.toString().trim()
 
-            if (content.isNotEmpty()) {
-                createPost(content)
+            if (content.isNotEmpty() && this::selectedImageUri.isInitialized) {
+                uploadImageAndCreatePost(content)
             } else {
-                Toast.makeText(this, "Por favor, ingresa algún contenido.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Por favor, ingresa contenido y selecciona una imagen.", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
-    private fun createPost(content: String) {
+    private fun openImagePicker() {
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        intent.type = "image/*"
+        startActivityForResult(intent, PICK_IMAGE_REQUEST)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data != null && data.data != null) {
+            selectedImageUri = data.data!!
+            imageView.setImageURI(selectedImageUri)
+        }
+    }
+
+    private fun uploadImageAndCreatePost(content: String) {
+        val storageRef = FirebaseStorage.getInstance().reference.child("images/${UUID.randomUUID()}.jpg")
+        storageRef.putFile(selectedImageUri).addOnSuccessListener { taskSnapshot ->
+            storageRef.downloadUrl.addOnSuccessListener { uri ->
+                createPost(content, uri.toString())
+            }
+        }.addOnFailureListener { exception ->
+            Toast.makeText(this, "Error al subir la imagen: ${exception.message}", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun createPost(content: String, imageUrl: String) {
         val database = FirebaseDatabase.getInstance()
         val postsRef = database.getReference("posts")
         val usersRef = database.getReference("usuarios")
@@ -43,12 +85,9 @@ class CreatePostActivity : AppCompatActivity() {
         val currentUser = auth.currentUser ?: return
         val uid = currentUser.uid
 
-        // Obtener el nombre de usuario desde la base de datos
         usersRef.child(uid).get().addOnSuccessListener { snapshot ->
-            Log.d("CreatePostActivity", "Snapshot: ${snapshot.value}")
             if (snapshot.exists()) {
                 val username = snapshot.child("username").value as? String
-                Log.d("CreatePostActivity", "Nombre de usuario obtenido: $username")
 
                 if (username != null) {
                     val post = Post(
@@ -56,28 +95,25 @@ class CreatePostActivity : AppCompatActivity() {
                         uid = uid,
                         username = username,
                         content = content,
-                        imageUrl = null,
+                        imageUrl = imageUrl,
                         timestamp = System.currentTimeMillis()
                     )
 
                     postsRef.child(postId).setValue(post).addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             Toast.makeText(this, "Publicación creada.", Toast.LENGTH_SHORT).show()
-                            finish() // Regresa a la actividad anterior
+                            finish()
                         } else {
                             Toast.makeText(this, "Error al crear la publicación: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                         }
                     }
                 } else {
-                    Log.d("CreatePostActivity", "El campo 'username' no se encontró para el UID: $uid")
                     Toast.makeText(this, "No se encontró el nombre de usuario.", Toast.LENGTH_SHORT).show()
                 }
             } else {
-                Log.d("CreatePostActivity", "No se encontraron datos para el UID: $uid")
                 Toast.makeText(this, "No se encontró el nombre de usuario.", Toast.LENGTH_SHORT).show()
             }
         }.addOnFailureListener { exception ->
-            Log.e("CreatePostActivity", "Error al obtener el nombre de usuario", exception)
             Toast.makeText(this, "Error al obtener el nombre de usuario: ${exception.message}", Toast.LENGTH_SHORT).show()
         }
     }

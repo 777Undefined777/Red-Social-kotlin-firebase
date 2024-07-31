@@ -6,46 +6,52 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CreatePostActivity">
+
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="314dp"
-        android:layout_height="137dp"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
         android:src="@drawable/zombiegreen"
-        app:layout_constraintBottom_toTopOf="@+id/editTextContent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
+        android:contentDescription="Imagen seleccionada"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.609" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/buttonSelectImage"
+        android:layout_margin="16dp"/>
+
+    <Button
+        android:id="@+id/buttonSelectImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Seleccionar Imagen"
+        app:layout_constraintTop_toBottomOf="@id/imageView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/editTextContent"
+        android:layout_margin="16dp"/>
 
     <EditText
         android:id="@+id/editTextContent"
-        android:layout_width="407dp"
-        android:layout_height="164dp"
-
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
         android:gravity="top"
         android:hint='Ingresa el texto a postear ej: "Hola Hoy fue un buen dia"'
-        android:minHeight="200dp"
         android:padding="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonPost"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttonSelectImage"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/buttonPost"
+        android:layout_margin="16dp"/>
 
     <Button
         android:id="@+id/buttonPost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:layout_margin="16dp"
         android:text="Postear"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextContent" />
-
-
+        app:layout_constraintStart_toStartOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
