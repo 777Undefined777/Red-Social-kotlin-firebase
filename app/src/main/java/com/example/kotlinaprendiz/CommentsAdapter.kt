@@ -6,8 +6,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlinaprendiz.models.Comment
+import java.text.SimpleDateFormat
+import java.util.Locale
 
-class CommentsAdapter(private val comments: List<Comment>) : RecyclerView.Adapter<CommentsAdapter.CommentViewHolder>() {
+class CommentsAdapter(private val commentsList: List<Comment>) : RecyclerView.Adapter<CommentsAdapter.CommentViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommentViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_comment, parent, false)
@@ -15,20 +17,21 @@ class CommentsAdapter(private val comments: List<Comment>) : RecyclerView.Adapte
     }
 
     override fun onBindViewHolder(holder: CommentViewHolder, position: Int) {
-        holder.bind(comments[position])
+        val comment = commentsList[position]
+        holder.usernameTextView.text = comment.username
+        holder.contentTextView.text = comment.content
+
+        // Convert timestamp to date string
+        val dateFormat = SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault())
+        val formattedDate = dateFormat.format(comment.timestamp)
+        holder.timestampTextView.text = formattedDate
     }
 
-    override fun getItemCount(): Int = comments.size
+    override fun getItemCount() = commentsList.size
 
-    class CommentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val usernameTextView: TextView = itemView.findViewById(R.id.textViewCommentUsername)
-        private val contentTextView: TextView = itemView.findViewById(R.id.textViewCommentContent)
-        private val timestampTextView: TextView = itemView.findViewById(R.id.textViewCommentTimestamp)
-
-        fun bind(comment: Comment) {
-            usernameTextView.text = comment.username
-            contentTextView.text = comment.content
-            timestampTextView.text = java.text.DateFormat.getDateTimeInstance().format(comment.timestamp)
-        }
+    inner class CommentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val usernameTextView: TextView = itemView.findViewById(R.id.textViewCommentUsername)
+        val contentTextView: TextView = itemView.findViewById(R.id.textViewCommentContent)
+        val timestampTextView: TextView = itemView.findViewById(R.id.textViewCommentTimestamp)
     }
 }

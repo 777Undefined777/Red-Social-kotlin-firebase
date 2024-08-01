@@ -1,6 +1,7 @@
 package com.example.kotlinaprendiz
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -51,9 +52,15 @@ class CommentsActivity : AppCompatActivity() {
                 commentsList.clear()
                 for (commentSnapshot in snapshot.children) {
                     val comment = commentSnapshot.getValue(Comment::class.java)
-                    comment?.let { commentsList.add(it) }
+                    if (comment != null) {
+                        fetchUsername(comment.uid) { username ->
+                            comment.username = username
+                            Log.d("CommentsActivity", "Comentario recibido: Usuario: ${comment.username}, Contenido: ${comment.content}")
+                            commentsList.add(comment)
+                            commentsAdapter.notifyDataSetChanged()
+                        }
+                    }
                 }
-                commentsAdapter.notifyDataSetChanged()
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -62,21 +69,35 @@ class CommentsActivity : AppCompatActivity() {
         })
     }
 
+
+    private fun fetchUsername(uid: String, callback: (String) -> Unit) {
+        val usersRef = FirebaseDatabase.getInstance().getReference("usuarios")
+        usersRef.child(uid).child("username").get().addOnSuccessListener { snapshot ->
+            val username = snapshot.value as? String ?: "Desconocido"
+            callback(username)
+        }.addOnFailureListener {
+            callback("Error")
+        }
+    }
+
+
+
+
+
     private fun addComment(content: String) {
         val commentId = commentsRef.push().key ?: return
         val currentUser = FirebaseAuth.getInstance().currentUser ?: return
         val uid = currentUser.uid
-        val username = currentUser.displayName ?: "Usuario"
         val timestamp = System.currentTimeMillis()
 
-        val comment = Comment(commentId, postId, uid, username, content, timestamp)
+        val comment = Comment(commentId, postId, uid, content, timestamp)
         commentsRef.child(commentId).setValue(comment).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 Toast.makeText(this, "Comentario agregado", Toast.LENGTH_SHORT).show()
-                // Actualizar UI
             } else {
                 Toast.makeText(this, "Error al agregar comentario: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
             }
         }
     }
+
 }
