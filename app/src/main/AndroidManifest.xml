@@ -33,6 +33,8 @@
         <activity android:name=".CreatePostActivity"></activity>
         <activity android:name=".PostsAdapter"></activity>
         <activity android:name=".RegistroActivity"></activity>
+        <activity android:name=".CommentsActivity"></activity>
+
 
     </application>
 </manifest>
