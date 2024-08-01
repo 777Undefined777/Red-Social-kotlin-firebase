@@ -40,14 +40,14 @@ class PostsAdapter(private val posts: List<Post>) : RecyclerView.Adapter<PostsAd
         fun bind(post: Post) {
             usernameTextView.text = post.username
             contentTextView.text = post.content
-            timestampTextView.text =
-                java.text.DateFormat.getDateTimeInstance().format(post.timestamp)
+            timestampTextView.text = java.text.DateFormat.getDateTimeInstance().format(post.timestamp)
             likeCountTextView.text = post.likes.toString()
 
             if (post.imageUrl != null) {
+                imageViewPost.visibility = View.VISIBLE
                 Glide.with(itemView.context).load(post.imageUrl).into(imageViewPost)
             } else {
-                imageViewPost.setImageResource(0)
+                imageViewPost.visibility = View.GONE
             }
 
             likeImageView.setOnClickListener {
@@ -61,6 +61,7 @@ class PostsAdapter(private val posts: List<Post>) : RecyclerView.Adapter<PostsAd
                 context.startActivity(intent)
             }
         }
+
 
         private fun handleLikeClick(post: Post) {
             val currentUser = FirebaseAuth.getInstance().currentUser ?: return
