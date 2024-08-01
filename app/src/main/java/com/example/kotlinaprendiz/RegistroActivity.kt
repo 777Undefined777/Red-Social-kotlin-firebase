@@ -1,5 +1,6 @@
 package com.example.kotlinaprendiz
 
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -10,9 +11,9 @@ import android.widget.Toast
 import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.kotlinaprendiz.models.User
-
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import java.util.*
 
 class RegistroActivity : AppCompatActivity() {
 
@@ -41,6 +42,23 @@ class RegistroActivity : AppCompatActivity() {
             }
         }
 
+        // Abrir DatePickerDialog al hacer clic en el EditText de fecha de nacimiento
+        etDateOfBirth.setOnClickListener {
+            val calendar = Calendar.getInstance()
+            val year = calendar.get(Calendar.YEAR)
+            val month = calendar.get(Calendar.MONTH)
+            val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+            val datePickerDialog = DatePickerDialog(
+                this,
+                { _, selectedYear, selectedMonth, selectedDay ->
+                    // +1 porque enero es 0
+                    val selectedDate = "$selectedDay/${selectedMonth + 1}/$selectedYear"
+                    etDateOfBirth.setText(selectedDate)
+                }, year, month, day
+            )
+            datePickerDialog.show()
+        }
 
         btnRegister.setOnClickListener {
             val email = etEmail.text.toString().trim()
