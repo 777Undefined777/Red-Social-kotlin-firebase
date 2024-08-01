@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
+import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.kotlinaprendiz.models.Post
 import com.google.firebase.auth.FirebaseAuth
@@ -38,6 +39,18 @@ class CreatePostActivity : AppCompatActivity() {
         val btnPost: Button = findViewById(R.id.buttonPost)
         val btnSelectImage: ImageView = findViewById(R.id.imageView)
 
+        val videoView: VideoView = findViewById(R.id.videoView)
+        val videoUri = Uri.parse("android.resource://" + packageName + "/" + R.raw.hcvideo)
+        videoView.setVideoURI(videoUri)
+        videoView.start()
+        videoView.setOnPreparedListener { mediaPlayer ->
+            mediaPlayer.isLooping = true
+            mediaPlayer.setVolume(0f, 0f)
+            mediaPlayer.setOnVideoSizeChangedListener { _, width, height ->
+                adjustAspectRatio(videoView, width, height)
+            }
+        }
+
         btnSelectImage.setOnClickListener {
             openImagePicker()
         }
@@ -55,6 +68,27 @@ class CreatePostActivity : AppCompatActivity() {
                 Toast.makeText(this, "Por favor, ingresa contenido.", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun adjustAspectRatio(videoView: VideoView, videoWidth: Int, videoHeight: Int) {
+        val layoutParams = videoView.layoutParams
+        val displayMetrics = resources.displayMetrics
+
+        val deviceWidth = displayMetrics.widthPixels
+        val deviceHeight = displayMetrics.heightPixels
+
+        val deviceAspectRatio = deviceWidth.toFloat() / deviceHeight.toFloat()
+        val videoAspectRatio = videoWidth.toFloat() / videoHeight.toFloat()
+
+        if (videoAspectRatio > deviceAspectRatio) {
+            layoutParams.width = deviceWidth
+            layoutParams.height = (deviceWidth / videoAspectRatio).toInt()
+        } else {
+            layoutParams.width = (deviceHeight * videoAspectRatio).toInt()
+            layoutParams.height = deviceHeight
+        }
+
+        videoView.layoutParams = layoutParams
     }
 
     private fun openImagePicker() {

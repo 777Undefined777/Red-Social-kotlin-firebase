@@ -2,8 +2,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#121212">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <VideoView
+        android:id="@+id/videoView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="391dp"
@@ -39,7 +47,6 @@
                 android:id="@+id/view3"
                 android:layout_width="282dp"
                 android:layout_height="16dp" />
-
 
             <EditText
                 android:id="@+id/editTextUsername"
@@ -92,7 +99,6 @@
                 android:layout_width="282dp"
                 android:layout_height="15dp" />
 
-
             <EditText
                 android:id="@+id/editTextBirthDate"
                 android:layout_width="match_parent"
@@ -110,7 +116,6 @@
                 android:layout_width="274dp"
                 android:layout_height="20dp" />
 
-
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonRegister"
                 style="@style/CustomButtonStyle"
@@ -120,7 +125,6 @@
                 android:padding="12dp"
                 android:text="Registrar"
                 app:backgroundTint="@color/button_background" />
-
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
