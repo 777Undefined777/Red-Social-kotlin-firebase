@@ -30,18 +30,23 @@
 
         <EditText
             android:id="@+id/editTextComment"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="290dp"
+            android:layout_height="48dp"
             android:layout_weight="1"
-            android:hint="Añadir comentario..."
+            android:background="@drawable/edittext_background"
+            android:hint="Escribe un comentario..."
             android:inputType="text"
-            android:maxLines="3"/>
+            android:maxLines="3"
+            android:textColor="@color/white"
+            android:textColorHint="#6E6969" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonAddComment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Enviar"/>
+            android:text="Enviar"
+            app:backgroundTint="@color/button_background"
+            style="@style/CustomButtonStyle"/>
 
     </LinearLayout>
 
