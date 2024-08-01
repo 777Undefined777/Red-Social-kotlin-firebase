@@ -9,18 +9,17 @@
     android:background="#121212"
     tools:context=".CreatePostActivity">
 
-<EditText
-android:id="@+id/editTextContent"
-android:layout_width="match_parent"
-android:layout_height="106dp"
-android:layout_marginBottom="8dp"
-android:gravity="top"
-android:hint="Ingresa el texto a postear, ej: 'Hola Hoy fue un buen dia'"
-android:padding="12dp"
-    android:textColorHint="@color/white"
-   android:textColor="@color/white"
-    android:background="@drawable/edittext_background"
-    />
+    <EditText
+        android:id="@+id/editTextContent"
+        android:layout_width="match_parent"
+        android:layout_height="106dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/edittext_background"
+        android:gravity="top"
+        android:hint="Ingresa el texto a postear, ej: 'Hola Hoy fue un buen dia'"
+        android:padding="12dp"
+        android:textColor="@color/white"
+        android:textColorHint="#4E4D4D" />
 
 <ImageView
 android:id="@+id/imageView"
