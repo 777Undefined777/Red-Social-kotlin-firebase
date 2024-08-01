@@ -100,7 +100,7 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/edittext_background"
                 android:hint="Fecha de nacimiento"
-                android:inputType="date"
+                android:inputType="datetime"
                 android:padding="12dp"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#7FFF00" /> <!-- Texto blanco, hint verde -->
