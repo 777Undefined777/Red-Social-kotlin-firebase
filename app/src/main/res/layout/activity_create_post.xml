@@ -10,12 +10,12 @@
 
     <EditText
         android:id="@+id/editTextContent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="106dp"
+        android:layout_marginBottom="8dp"
         android:gravity="top"
         android:hint="Ingresa el texto a postear, ej: 'Hola Hoy fue un buen dia'"
-        android:padding="12dp"
-        android:layout_marginBottom="8dp" />
+        android:padding="12dp" />
 
     <ImageView
         android:id="@+id/imageView"
