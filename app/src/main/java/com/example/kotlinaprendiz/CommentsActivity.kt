@@ -18,6 +18,7 @@ class CommentsActivity : AppCompatActivity() {
     private lateinit var postId: String
     private lateinit var commentsList: MutableList<Comment>
     private lateinit var commentsAdapter: CommentsAdapter
+    private lateinit var commentEditText: EditText // Declara commentEditText como variable de clase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +35,7 @@ class CommentsActivity : AppCompatActivity() {
         recyclerViewComments.adapter = commentsAdapter
 
         val newCommentButton: Button = findViewById(R.id.buttonAddComment)
-        val commentEditText: EditText = findViewById(R.id.editTextComment)
+        commentEditText = findViewById(R.id.editTextComment) // Inicializa commentEditText
 
         newCommentButton.setOnClickListener {
             val content = commentEditText.text.toString()
@@ -69,7 +70,6 @@ class CommentsActivity : AppCompatActivity() {
         })
     }
 
-
     private fun fetchUsername(uid: String, callback: (String) -> Unit) {
         val usersRef = FirebaseDatabase.getInstance().getReference("usuarios")
         usersRef.child(uid).child("username").get().addOnSuccessListener { snapshot ->
@@ -79,10 +79,6 @@ class CommentsActivity : AppCompatActivity() {
             callback("Error")
         }
     }
-
-
-
-
 
     private fun addComment(content: String) {
         val commentId = commentsRef.push().key ?: return
@@ -111,10 +107,13 @@ class CommentsActivity : AppCompatActivity() {
                 })
 
                 Toast.makeText(this, "Comentario agregado", Toast.LENGTH_SHORT).show()
+
+
+                commentEditText.text.clear() // Limpiar el contenido del EditText
+
             } else {
                 Toast.makeText(this, "Error al agregar comentario: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
             }
         }
     }
-
 }
