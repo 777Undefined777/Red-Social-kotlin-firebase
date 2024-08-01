@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.kotlinaprendiz.models.Post
@@ -34,8 +33,9 @@ class PostsAdapter(private val posts: List<Post>) : RecyclerView.Adapter<PostsAd
         private val imageViewPost: ImageView = itemView.findViewById(R.id.imageViewPost)
         private val likeImageView: ImageView = itemView.findViewById(R.id.imageViewLike)
         private val commentImageView: ImageView = itemView.findViewById(R.id.imageViewComment)
-        private val likeCountTextView: TextView =
-            itemView.findViewById(R.id.textViewLikeCount) // Nueva vista para el contador de "me gusta"
+        private val likeCountTextView: TextView = itemView.findViewById(R.id.textViewLikeCount)
+        private val commentCountTextView: TextView = itemView.findViewById(R.id.textViewCommentCount)
+
 
         fun bind(post: Post) {
             usernameTextView.text = post.username
@@ -43,6 +43,13 @@ class PostsAdapter(private val posts: List<Post>) : RecyclerView.Adapter<PostsAd
             timestampTextView.text = java.text.DateFormat.getDateTimeInstance().format(post.timestamp)
             likeCountTextView.text = post.likes.toString()
 
+            // Cargar icono de usuario
+
+
+            // Aquí asumimos que el número de comentarios se ha añadido a la clase Post
+            commentCountTextView.text = post.commentsCount.toString()
+
+            // Cargar imagen del post si existe
             if (post.imageUrl != null) {
                 imageViewPost.visibility = View.VISIBLE
                 Glide.with(itemView.context).load(post.imageUrl).into(imageViewPost)
@@ -50,10 +57,12 @@ class PostsAdapter(private val posts: List<Post>) : RecyclerView.Adapter<PostsAd
                 imageViewPost.visibility = View.GONE
             }
 
+            // Manejar clic en "Me gusta"
             likeImageView.setOnClickListener {
                 handleLikeClick(post)
             }
 
+            // Manejar clic en comentarios
             commentImageView.setOnClickListener {
                 val context = itemView.context
                 val intent = Intent(context, CommentsActivity::class.java)
@@ -61,7 +70,6 @@ class PostsAdapter(private val posts: List<Post>) : RecyclerView.Adapter<PostsAd
                 context.startActivity(intent)
             }
         }
-
 
         private fun handleLikeClick(post: Post) {
             val currentUser = FirebaseAuth.getInstance().currentUser ?: return
@@ -81,11 +89,7 @@ class PostsAdapter(private val posts: List<Post>) : RecyclerView.Adapter<PostsAd
                 if (task.isSuccessful) {
                     likeCountTextView.text = post.likes.toString()
                 } else {
-                    Toast.makeText(
-                        itemView.context,
-                        "Error al actualizar 'me gusta'",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    // Mostrar mensaje de error si no se pudo actualizar
                 }
             }
         }

@@ -93,6 +93,23 @@ class CommentsActivity : AppCompatActivity() {
         val comment = Comment(commentId, postId, uid, content, timestamp)
         commentsRef.child(commentId).setValue(comment).addOnCompleteListener { task ->
             if (task.isSuccessful) {
+                // Incrementar el contador de comentarios en el post
+                val postRef = FirebaseDatabase.getInstance().getReference("posts").child(postId)
+                postRef.child("commentsCount").runTransaction(object : Transaction.Handler {
+                    override fun doTransaction(currentData: MutableData): Transaction.Result {
+                        var currentCount = currentData.getValue(Int::class.java) ?: 0
+                        currentCount++
+                        currentData.value = currentCount
+                        return Transaction.success(currentData)
+                    }
+
+                    override fun onComplete(error: DatabaseError?, committed: Boolean, currentData: DataSnapshot?) {
+                        if (error != null) {
+                            Toast.makeText(this@CommentsActivity, "Error al actualizar el contador de comentarios", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                })
+
                 Toast.makeText(this, "Comentario agregado", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(this, "Error al agregar comentario: ${task.exception?.message}", Toast.LENGTH_SHORT).show()

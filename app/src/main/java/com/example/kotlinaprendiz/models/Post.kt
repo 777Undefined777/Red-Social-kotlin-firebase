@@ -7,7 +7,7 @@ data class Post(
     val content: String = "",
     val imageUrl: String? = null,
     val timestamp: Long = 0L,
-    var likes: Int = 0, // Contador de "Me gusta"
-    val likedBy: MutableList<String> = mutableListOf() // Lista de UID de usuarios que dieron "Me gusta"
+    var likes: Int = 0,
+    var commentsCount: Int = 0, // Contador de comentarios
+    val likedBy: MutableList<String> = mutableListOf()
 )
-
