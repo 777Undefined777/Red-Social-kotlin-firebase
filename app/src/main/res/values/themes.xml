@@ -9,6 +9,8 @@
     <!-- Estilo para el botón personalizado -->
     <style name="CustomButtonStyle" parent="Widget.Material3.Button">
         <item name="backgroundTint">@drawable/edittext_background</item>
-        <item name="android:textColor">#FFFFFF</item> <!-- Texto blanco -->
+        <item name="android:textColor">#FFFFFF</item>
+
+
     </style>
 </resources>
