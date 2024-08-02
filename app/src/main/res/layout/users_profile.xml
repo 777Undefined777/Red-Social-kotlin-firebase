@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="#1E1E1E"
+    >
+
+    <!-- Perfil Picture -->
+    <ImageView
+        android:id="@+id/profilePicture"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+
+
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/ic_user" />
+
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profilePicture"
+        android:layout_centerHorizontal="true"
+        android:text="Username"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/profileDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/username"
+        android:layout_marginTop="8dp"
+        android:padding="12dp"
+        android:textColor="@color/white"
+        android:gravity="center"
+
+        android:text="Esta es una descripcion acerca de mi mismo."
+        />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/editButton"
+        style="@style/CustomButtonStyle"
+        android:layout_width="249dp"
+        android:layout_height="38dp"
+        android:layout_below="@id/preferencesSection"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="82dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="64dp"
+        android:background="@drawable/button_background"
+        android:text="Enviar Mensaje" />
+
+    <LinearLayout
+        android:id="@+id/preferencesSection"
+        android:layout_width="395dp"
+        android:layout_height="147dp"
+        android:layout_below="@id/profileDescription"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="0dp"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/username"
+            android:layout_marginTop="8dp"
+            android:padding="12dp"
+            android:text="*preferencias y hobbies"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/preferncesAndHobbies"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/username"
+            android:layout_marginTop="8dp"
+            android:gravity="center_horizontal"
+            android:padding="12dp"
+            android:text="Me gusta estar en mi computador programando"
+
+            android:textColor="@color/white" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/p"
+        android:layout_width="395dp"
+        android:layout_height="263dp"
+        android:layout_below="@+id/editButton"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="0dp"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="361dp"
+            android:layout_height="229dp" />
+
+
+    </LinearLayout>
+
+</RelativeLayout>

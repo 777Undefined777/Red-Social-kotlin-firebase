@@ -2,6 +2,7 @@ package com.example.kotlinaprendiz
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -33,6 +34,14 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = postsAdapter
 
         fetchPosts()
+
+        val EditUser: ImageView = findViewById(R.id.ProfileImg)
+        EditUser.setOnClickListener {
+            startActivity(Intent(this, UserEditActivity::class.java))
+        }
+
+
+
 
         // Botón para crear una nueva publicación
         val fabCreatePost: FloatingActionButton = findViewById(R.id.fabCreatePost)

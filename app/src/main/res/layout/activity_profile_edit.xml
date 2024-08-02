@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp"
+    android:background="#1E1E1E">
+
+    <!-- Perfil Picture -->
+    <ImageView
+        android:id="@+id/profilePicture"
+        android:layout_width="77dp"
+        android:layout_height="58dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/ic_user" />
+
+    <ImageView
+        android:id="@+id/camera"
+        android:layout_width="41dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/username"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="114dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="87dp"
+        android:layout_toStartOf="@+id/profilePicture"
+        android:src="@drawable/ic_camara_green" />
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profilePicture"
+        android:layout_centerHorizontal="true"
+        android:text="Username"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/profileDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/username"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="-7dp"
+        android:layout_marginEnd="32dp"
+        android:gravity="center"
+        android:padding="12dp"
+        android:text="Esta es una descripcion acerca de mi mismo."
+        android:textColor="@color/white" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/editButton"
+        style="@style/CustomButtonStyle"
+        android:layout_width="249dp"
+        android:layout_height="38dp"
+        android:layout_below="@id/preferencesSection"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="-13dp"
+        android:layout_marginEnd="79dp"
+
+        android:text="Editar Perfil"
+        app:backgroundTint="@color/button_background" />
+
+    <LinearLayout
+        android:id="@+id/preferencesSection"
+        android:layout_width="wrap_content"
+        android:layout_height="136dp"
+        android:layout_below="@id/profileDescription"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="-1dp"
+        android:layout_marginEnd="52dp"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/username"
+            android:layout_marginTop="8dp"
+            android:padding="12dp"
+            android:text="*preferencias y hobbies"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/preferncesAndHobbies"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/username"
+            android:layout_marginTop="8dp"
+            android:gravity="center_horizontal"
+            android:padding="12dp"
+            android:text="Me gusta ir a cine"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/p"
+        android:layout_width="395dp"
+        android:layout_height="406dp"
+        android:layout_below="@+id/editButton"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="-6dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="0dp"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="345dp"
+            android:layout_height="380dp" />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -8,41 +8,64 @@
     android:background="#1E1E1E"
     tools:context=".MainActivity">
 
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="260dp"
+        android:layout_marginBottom="32dp"
+        android:text="Nuevo Post "
+        android:textColor="#FDFDFD"
+        android:textStyle="italic"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="50dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="204dp"
+        android:id="@+id/imageView8"
+        android:layout_width="45dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="232dp"
         android:src="@drawable/ic_message"
         app:layout_constraintBottom_toTopOf="@+id/recyclerViewPosts"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.49" />
+        app:layout_constraintVertical_bias="0.514" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="45dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="184dp"
+        android:src="@drawable/ic_notificacion"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerViewPosts"
+        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.514" />
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="50dp"
-        android:layout_height="30dp"
+        android:layout_width="32dp"
+        android:layout_height="36dp"
         android:src="@drawable/ic_home"
         app:layout_constraintBottom_toTopOf="@+id/recyclerViewPosts"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/ProfileImg"
         android:layout_width="50dp"
         android:layout_height="30dp"
-        android:layout_marginStart="256dp"
-        android:src="@drawable/ic_user"
+        android:layout_marginStart="280dp"
+        android:src="@drawable/ic_user_b"
         app:layout_constraintBottom_toTopOf="@+id/recyclerViewPosts"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.49" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewPosts"
-        android:layout_width="403dp"
-        android:layout_height="586dp"
+        android:layout_width="407dp"
+        android:layout_height="550dp"
         android:layout_margin="16dp"
         android:background="#1E1E1E"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -87,10 +110,23 @@
 
         <SearchView
             android:id="@+id/searchView"
-            android:layout_width="185dp"
+            android:layout_width="175dp"
             android:layout_height="30dp"
             android:background="@drawable/greenday"
             android:textColor="@color/white" />
 
     </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="Programmed By: Jorge "
+        android:textStyle="italic"
+        android:textColor="#FDFDFD"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

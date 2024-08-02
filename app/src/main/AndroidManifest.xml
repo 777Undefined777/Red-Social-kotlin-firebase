@@ -34,6 +34,7 @@
         <activity android:name=".PostsAdapter"></activity>
         <activity android:name=".RegistroActivity"></activity>
         <activity android:name=".CommentsActivity"></activity>
+        <activity android:name=".UserEditActivity"></activity>
 
 
     </application>
