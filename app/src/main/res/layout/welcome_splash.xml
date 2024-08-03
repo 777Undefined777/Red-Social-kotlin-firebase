@@ -36,4 +36,18 @@
         android:gravity="center"
         android:text="[ Tu app para expresarte libremente ]" />
 
+    <TextView
+        android:id="@+id/textView_programmed_by"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView4"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="22dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:textStyle="bold|italic|normal"
+        android:text="[ Programmed By: |JORGE|  ]"
+        android:textColor="#000000" />
+
 </RelativeLayout>

@@ -4,20 +4,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
     android:background="#F7FAFC"
     tools:context=".CommentsActivity"
     android:padding="16dp">
 
     <TextView
-        android:layout_width="374dp"
-        android:layout_height="35dp"
-
+        android:id="@+id/textViewComments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Comentarios"
         android:textColor="#353E4E"
-        android:textSize="25dp"
-        android:textStyle="italic|bold|normal"
+        android:textSize="25sp"
+        android:textStyle="italic|bold"
         app:layout_constraintBottom_toTopOf="@+id/recyclerViewComments"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,13 +24,13 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewComments"
-        android:layout_width="370dp"
-        android:layout_height="587dp"
+        android:layout_width="364dp"
+        android:layout_height="635dp"
         android:scrollbars="vertical"
         app:layout_constraintBottom_toTopOf="@+id/commentInputLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewComments" />
 
     <LinearLayout
         android:id="@+id/commentInputLayout"
@@ -44,7 +43,7 @@
 
         <EditText
             android:id="@+id/editTextComment"
-            android:layout_width="290dp"
+            android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
             android:background="@drawable/edittext_background"
@@ -60,7 +59,7 @@
             android:layout_height="wrap_content"
             android:text="Enviar"
             android:textColor="#F7FAFC"
-            app:backgroundTint="#F56565 "/>
+            app:backgroundTint="#F56565" />
 
     </LinearLayout>
 
