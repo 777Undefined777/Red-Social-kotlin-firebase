@@ -12,7 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#292929"
+        android:background="#F7FAFC"
         android:padding="8dp">
 
         <LinearLayout
@@ -23,7 +23,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:background="#292929">
+            android:background="#F7FAFC">
 
             <ImageView
                 android:id="@+id/imageViewProfile"
@@ -39,26 +39,26 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:background="#292929"
+                android:background="#F7FAFC"
                 >
 
                 <TextView
                     android:id="@+id/textViewUsername"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#7FFF00"
+                    android:fontFamily="sans-serif-light"
+                    android:textColor="#2D3748"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    android:fontFamily="sans-serif-light"
                     tools:text="Nombre de usuario" />
 
                 <TextView
                     android:id="@+id/textViewTimestamp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#A9A9A9"
-                    android:textSize="12sp"
                     android:fontFamily="sans-serif-light"
+                    android:textColor="#2D3748"
+                    android:textSize="12sp"
                     tools:text="Fecha y hora" />
             </LinearLayout>
         </LinearLayout>
@@ -67,9 +67,9 @@
             android:id="@+id/textViewContent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp"
             android:fontFamily="sans-serif-light"
+            android:textColor="#2D3748"
+            android:textSize="14sp"
             app:layout_constraintBottom_toTopOf="@+id/imageViewPost"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -115,7 +115,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="4dp"
-                android:textColor="#FFFFFF"
+                android:textColor="#2D3748"
                 android:textSize="14sp"
                 tools:text="0" />
 
@@ -132,7 +132,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginBottom="4dp"
-                android:textColor="#FFFFFF"
+                android:textColor="#2D3748"
                 android:textSize="14sp"
                 tools:text="0" />
 

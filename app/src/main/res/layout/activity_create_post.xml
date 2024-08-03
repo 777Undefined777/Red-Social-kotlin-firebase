@@ -2,27 +2,21 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/whiteandred">
 
 
 
 
 
 
-    <VideoView
-        android:id="@+id/videoView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true" />
+
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        app:cardBackgroundColor="#1C1C1C"
+        app:cardBackgroundColor="#F7FAFC"
         app:cardCornerRadius="8dp"
         app:cardElevation="4dp">
 
@@ -41,7 +35,7 @@
                 android:gravity="top"
                 android:hint="Ingresa el texto a postear, ej: 'Hola Hoy fue un buen dia'"
                 android:padding="12dp"
-                android:textColor="@color/white"
+                android:textColor="#4E4D4D"
                 android:textColorHint="#4E4D4D" />
 
             <ImageView
@@ -53,7 +47,7 @@
                 android:contentDescription="Imagen seleccionada"
                 android:focusable="true"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_uploadimg" />
+                android:src="@drawable/ic_camara_green" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonPost"
@@ -63,7 +57,8 @@
                 android:layout_marginTop="32dp"
                 android:padding="12dp"
                 android:text="Subir Post"
-                app:backgroundTint="@color/button_background" />
+                android:textColor="#F7FAFC"
+                app:backgroundTint="#F56565" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

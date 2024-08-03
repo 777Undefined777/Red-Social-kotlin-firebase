@@ -27,17 +27,7 @@ class LoginActivity : AppCompatActivity() {
         val btnLogin: Button = findViewById(R.id.buttonLogin)
         val btnSignup: TextView = findViewById(R.id.btnSignup)
 
-        val videoView: VideoView = findViewById(R.id.videoView1)
-        val videoUri = Uri.parse("android.resource://" + packageName + "/" + R.raw.hcvideo)
-        videoView.setVideoURI(videoUri)
-        videoView.start()
-        videoView.setOnPreparedListener { mediaPlayer ->
-            mediaPlayer.isLooping = true
-            mediaPlayer.setVolume(0f, 0f)
-            mediaPlayer.setOnVideoSizeChangedListener { _, width, height ->
-                adjustAspectRatio(videoView, width, height)
-            }
-        }
+
 
 
         btnSignup.setOnClickListener {
@@ -57,26 +47,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun adjustAspectRatio(videoView: VideoView, videoWidth: Int, videoHeight: Int) {
-        val layoutParams = videoView.layoutParams
-        val displayMetrics = resources.displayMetrics
 
-        val deviceWidth = displayMetrics.widthPixels
-        val deviceHeight = displayMetrics.heightPixels
-
-        val deviceAspectRatio = deviceWidth.toFloat() / deviceHeight.toFloat()
-        val videoAspectRatio = videoWidth.toFloat() / videoHeight.toFloat()
-
-        if (videoAspectRatio > deviceAspectRatio) {
-            layoutParams.width = deviceWidth
-            layoutParams.height = (deviceWidth / videoAspectRatio).toInt()
-        } else {
-            layoutParams.width = (deviceHeight * videoAspectRatio).toInt()
-            layoutParams.height = deviceHeight
-        }
-
-        videoView.layoutParams = layoutParams
-    }
 
     private fun loginUser(email: String, password: String) {
         auth.signInWithEmailAndPassword(email, password)

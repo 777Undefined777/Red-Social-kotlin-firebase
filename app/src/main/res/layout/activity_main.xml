@@ -5,8 +5,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1E1E1E"
+    android:background="#F7FAFC"
     tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="47dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/anarchys"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
 
@@ -15,7 +26,7 @@
         android:layout_marginStart="260dp"
         android:layout_marginBottom="32dp"
         android:text="Nuevo Post "
-        android:textColor="#FDFDFD"
+        android:textColor="#2D3748"
         android:textStyle="italic"
 
         app:layout_constraintBottom_toBottomOf="parent"
@@ -47,7 +58,7 @@
         android:id="@+id/imageView2"
         android:layout_width="32dp"
         android:layout_height="36dp"
-        android:src="@drawable/ic_home"
+        android:src="@drawable/anarchys"
         app:layout_constraintBottom_toTopOf="@+id/recyclerViewPosts"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -67,7 +78,7 @@
         android:layout_width="407dp"
         android:layout_height="550dp"
         android:layout_margin="16dp"
-        android:background="#1E1E1E"
+        android:background="#F7FAFC"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -79,8 +90,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:backgroundTint="#F56565"
         android:src="@drawable/ic_add"
-        android:backgroundTint="#32CD32"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -110,9 +121,9 @@
 
         <SearchView
             android:id="@+id/searchView"
-            android:layout_width="175dp"
+            android:layout_width="182dp"
             android:layout_height="30dp"
-            android:background="@drawable/greenday"
+            android:background="@drawable/whiteandred"
             android:textColor="@color/white" />
 
     </androidx.cardview.widget.CardView>
@@ -121,11 +132,11 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="72dp"
         android:layout_marginBottom="16dp"
         android:text="Programmed By: Jorge "
+        android:textColor="#2D3748"
         android:textStyle="italic"
-        android:textColor="#FDFDFD"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

@@ -6,12 +6,12 @@
 
     <!-- Cabeza del usuario como círculo -->
     <path
-        android:fillColor="#7FFF00"
+        android:fillColor="#F56565"
         android:pathData="M12 4c2.21 0 4 1.79 4 4s-1.79 4-4 4-4-1.79-4-4 1.79-4 4-4z"/>
 
     <!-- Cuerpo del usuario -->
     <path
-        android:fillColor="#7FFF00"
+        android:fillColor="#F56565"
         android:pathData="M12 12c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
 
     <!-- Flecha de entrada -->

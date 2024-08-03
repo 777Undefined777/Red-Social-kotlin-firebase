@@ -2,20 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/whiteandred">
 
-    <VideoView
-        android:id="@+id/videoView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true" />
+
 
     <androidx.cardview.widget.CardView
-        android:layout_width="391dp"
-        android:layout_height="598dp"
+        android:layout_width="374dp"
+        android:layout_height="609dp"
         android:layout_centerInParent="true"
         android:layout_marginStart="5dp"
         android:layout_marginLeft="5dp"
@@ -24,24 +18,34 @@
         android:layout_marginRight="5dp"
         android:layout_marginBottom="5dp"
         android:elevation="4dp"
-        app:cardBackgroundColor="#292929"
+        app:cardBackgroundColor="#F7FAFC"
         app:cardCornerRadius="16dp"
         app:cardElevation="8dp"
         app:cardUseCompatPadding="true">
 
         <LinearLayout
-            android:layout_width="362dp"
-            android:layout_height="567dp"
+            android:layout_width="348dp"
+            android:layout_height="584dp"
             android:orientation="vertical"
             android:padding="24dp">
 
             <TextView
-                android:id="@+id/tv"
-                android:layout_width="322dp"
-                android:layout_height="44dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
                 android:gravity="center"
-                android:text="Registro Usuario"
-                android:textColor="#7FFF00" />
+
+                android:text="Registrarse"
+                android:textColor="#2D3748"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="76dp"
+                android:layout_height="72dp"
+                android:layout_gravity="center"
+                android:background="@drawable/anarchys" />
 
             <View
                 android:id="@+id/view3"
@@ -57,8 +61,8 @@
                 android:hint="Username"
                 android:inputType="text"
                 android:padding="12dp"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#7FFF00" /> <!-- Texto blanco, hint verde -->
+                android:textColor="@color/black"
+                android:textColorHint="#1A1B1A" /> <!-- Texto blanco, hint verde -->
 
             <View
                 android:id="@+id/view8"
@@ -74,8 +78,8 @@
                 android:hint="Email"
                 android:inputType="textEmailAddress"
                 android:padding="12dp"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#7FFF00" /> <!-- Texto blanco, hint verde -->
+                android:textColor="@color/black"
+                android:textColorHint="#1A1B1A" /> <!-- Texto blanco, hint verde -->
 
             <View
                 android:id="@+id/view"
@@ -91,8 +95,8 @@
                 android:hint="Contraseña"
                 android:inputType="textPassword"
                 android:padding="12dp"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#7FFF00" /> <!-- Texto blanco, hint verde -->
+                android:textColor="@color/black"
+                android:textColorHint="#1A1B1A" /> <!-- Texto blanco, hint verde -->
 
             <View
                 android:id="@+id/view5"
@@ -105,14 +109,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/edittext_background"
+                android:clickable="true"
+                android:focusable="false"
                 android:hint="Fecha de nacimiento"
                 android:inputType="none"
                 android:padding="12dp"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#7FFF00"
-                android:focusable="false"
-                android:clickable="true" /> <!-- Texto blanco, hint verde -->
- <!-- Texto blanco, hint verde -->
+                android:textColor="@color/black"
+                android:textColorHint="#1A1B1A" /> <!-- Texto blanco, hint verde -->
+            <!-- Texto blanco, hint verde -->
 
             <View
                 android:id="@+id/view2"
@@ -126,8 +130,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:padding="12dp"
-                android:text="Registrar"
-                app:backgroundTint="@color/button_background" />
+                android:text="Registrarse"
+                android:textColor="#F7FAFC"
+                app:backgroundTint="#F56565 " />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
