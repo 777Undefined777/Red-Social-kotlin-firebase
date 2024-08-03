@@ -26,6 +26,25 @@
             android:orientation="vertical"
             android:padding="16dp">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:gravity="center"
+
+                android:text="Crea un nuevo post"
+                android:textColor="#2D3748"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="76dp"
+                android:layout_height="72dp"
+                android:layout_gravity="center"
+                android:background="@drawable/anarchys" />
+
+
             <EditText
                 android:id="@+id/editTextContent"
                 android:layout_width="match_parent"

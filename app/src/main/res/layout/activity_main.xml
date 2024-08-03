@@ -123,8 +123,8 @@
             android:id="@+id/searchView"
             android:layout_width="182dp"
             android:layout_height="30dp"
-            android:background="@drawable/whiteandred"
-            android:textColor="@color/white" />
+            android:textColor="#4E4D4D"
+            android:textColorHint="#4E4D4D"/>
 
     </androidx.cardview.widget.CardView>
 
