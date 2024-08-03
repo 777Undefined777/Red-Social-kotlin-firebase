@@ -23,7 +23,7 @@
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="260dp"
+        android:layout_marginStart="232dp"
         android:layout_marginBottom="32dp"
         android:text="Nuevo Post "
         android:textColor="#2D3748"
@@ -58,7 +58,7 @@
         android:id="@+id/imageView2"
         android:layout_width="32dp"
         android:layout_height="36dp"
-        android:src="@drawable/anarchys"
+        android:src="@drawable/ic_add"
         app:layout_constraintBottom_toTopOf="@+id/recyclerViewPosts"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -134,10 +134,22 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="72dp"
         android:layout_marginBottom="16dp"
-        android:text="Programmed By: Jorge "
-        android:textColor="#2D3748"
+        android:text="Social APP "
+        android:textColor="#F56565"
         android:textStyle="italic"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="400dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:text="Anarchy Social App ->Programmed By:|Jorge|"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textStyle="bold"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

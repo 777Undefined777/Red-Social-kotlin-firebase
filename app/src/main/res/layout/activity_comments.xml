@@ -5,19 +5,33 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
-    android:background="@drawable/whiteandred"
+    android:background="#F7FAFC"
     tools:context=".CommentsActivity"
     android:padding="16dp">
 
+    <TextView
+        android:layout_width="374dp"
+        android:layout_height="35dp"
+
+        android:gravity="center"
+        android:text="Comentarios"
+        android:textColor="#353E4E"
+        android:textSize="25dp"
+        android:textStyle="italic|bold|normal"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerViewComments"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewComments"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="370dp"
+        android:layout_height="587dp"
         android:scrollbars="vertical"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/commentInputLayout"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/commentInputLayout"
