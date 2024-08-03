@@ -21,7 +21,7 @@
         android:layout_below="@id/splash_image"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        android:text="Anarchy Social Media App"
+        android:text="Anarchy Social App"
         android:textColor="#000000"
         android:textSize="18sp"
         android:textStyle="bold" />
